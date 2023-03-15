@@ -1,0 +1,167 @@
+{% extends 'shop/index.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+
+    <style>
+        body {
+            font-family: 'Roboto';font-size: 16px;
+        }
+        
+        .aboutus-section {
+            padding: 90px 0;
+        }
+        .aboutus-title {
+            font-size: 30px;
+            letter-spacing: 0;
+            line-height: 32px;
+            margin: 0 0 39px;
+            padding: 0 0 11px;
+            position: relative;
+            text-transform: uppercase;
+            color: #000;
+        }
+        .aboutus-title::after {
+            background: #fdb801 none repeat scroll 0 0;
+            bottom: 0;
+            content: "";
+            height: 2px;
+            left: 0;
+            position: absolute;
+            width: 54px;
+        }
+        .aboutus-text {
+            color: #606060;
+            font-size: 18px;
+            line-height: 22px;
+            margin: 0 0 35px;
+            text-align:justify
+        }
+        
+        a:hover, a:active {
+            color: #ffb901;
+            text-decoration: none;
+            outline: 0;
+        }
+        .aboutus-more {
+            border: 1px solid #fdb801;
+            border-radius: 25px;
+            color: #fdb801;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0;
+            padding: 7px 20px;
+            text-transform: uppercase;
+        }
+        .feature .feature-box .iconset {
+            background: #fff none repeat scroll 0 0;
+            float: left;
+            position: relative;
+            width: 18%;
+        }
+        .feature .feature-box .iconset::after {
+            background: #fdb801 none repeat scroll 0 0;
+            content: "";
+            height: 150%;
+            left: 43%;
+            position: absolute;
+            top: 100%;
+            width: 1px;
+        }
+        
+        .feature .feature-box .feature-content h4 {
+            color: #0f0f0f;
+            font-size: 18px;
+            letter-spacing: 0;
+            line-height: 22px;
+            margin: 0 0 5px;
+        }
+        
+        
+        .feature .feature-box .feature-content {
+            float: left;
+            padding-left: 28px;
+            width: 78%;
+        }
+        .feature .feature-box .feature-content h4 {
+            color: #0f0f0f;
+            font-size: 18px;
+            letter-spacing: 0;
+            line-height: 22px;
+            margin: 0 0 5px;
+        }
+        .feature .feature-box .feature-content p {
+            color: #606060;
+            font-size: 13px;
+            line-height: 22px;
+        }
+        .icon {
+            color : #f4b841;
+            padding:0px;
+            font-size:40px;
+            border: 1px solid #fdb801;
+            border-radius: 100px;
+            color: #fdb801;
+            font-size: 28px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            width: 70px;
+        }
+        </style>
+        
+</head>
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">About Us</h1>
+            <div class="row">
+            <div class="card-body">
+                <body>
+                    <div class="aboutus-section">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="aboutus">
+                                        <h2 class="aboutus-title">Villaruz Auto Elertrical</h2>
+                                        <p class="aboutus-text">Villaruz Auto Electrical Shop is one of the growing auto 
+                                            electrical shops in Bangued, Abra. It is a family owned and managed shop that 
+                                            caters for people who require vehicle parts, accessories and maintenance supply. 
+                                            The business was established on March 03, 1997 and is still in service.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="aboutus-banner">
+                                        <img src="{% static 'images/villaruz.jpg' %}" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+            </div>
+        </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</html>
+{% endblock %}
+
+
+
+

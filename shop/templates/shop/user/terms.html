@@ -1,0 +1,90 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Font awesome icon set -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"> 
+
+<!-- Info box responsive - pure bootstrap no CSS / JS -->
+<div class="row justify-content-center">
+   <div class="col info-box rounded col-lg-10 col-xl-8 bg-light p-4 m-3 ">
+      <div class="row ">
+         <div class="col-12 col-sm-2 d-flex justify-content-center align-items-center mb-2 mb-sm-0 display-3 text-primary">
+            <i class="fa fa-info-circle"></i>
+         </div>
+         <div class="col-12 col-sm-10 pl-sm-0 mb-2">
+            {% include 'shop/alert.html' %}
+            <h3>Villaruz Auto Electrical Shop Terms and Conditions</h3>
+            <hr>
+            <p style="text-align: justify;">
+               This Agreement governs your access and use of the services provided by XYZ Company ("Company"). By accessing or using the Services, you agree to be bound by this Agreement.
+
+               <br><br>
+               <strong>1. Service</strong>
+               <br>
+               The Company provides an online platform that enables users to access and use its services. The Company reserves the right to modify, suspend, or discontinue the Services at any time, with or without notice.
+
+               <br><br>
+               <strong>2. User Conduct</strong>
+               <br>
+               You agree to use the Services only for lawful purposes and in a way that does not infringe on the rights of the Company or any third party. You are responsible for your conduct and any content that you upload or transmit through the Services.
+
+               <br><br>
+               <strong>3. Privacy</strong>
+               <br>
+               The Company respects your privacy and is committed to protecting your personal information. Please review our Privacy Policy for more information.
+
+               <br><br>
+               <strong>4. Termination</strong>
+               <br>
+               The Company may terminate this Agreement or suspend your access to the Services at any time, with or without cause or notice.
+
+               <br><br>
+               <strong>5. Disclaimer of Warranties</strong>
+               <br>
+               The Services are provided on an "as is" and "as available" basis. The Company makes no representations or warranties of any kind, express or implied, as to the operation of the Services or the information, content, materials, or products included on the Services.
+
+               <br><br>
+               <strong>6. Limitation of Liability</strong>
+               <br>
+               The Company will not be liable for any damages of any kind arising from the use of the Services, including but not limited to direct, indirect, incidental, punitive, and consequential damages.
+
+               <br><br>
+               <strong>7. Governing Law</strong>
+               <br>
+               This Agreement will be governed by and construed in accordance with the laws of the state where the Company is located.
+
+               <br><br>
+               <strong>8. Changes to Agreement</strong>
+               <br>
+               The Company reserves the right to modify this Agreement at any time. Your continued use of the Services following the posting of changes to this Agreement will constitute your acceptance of such changes.
+            </p>
+            <form method="POST">
+                {% csrf_token %}
+                {{ captcha }}
+                <br>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="termsCheck" required>
+                  <label class="form-check-label" for="termsCheck">
+                    I Agree
+                  </label>
+                </div>
+                <button type="submit" id="termsSubmit" class="btn btn-primary mt-3" disabled>Submit</button>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+<script>
+    // Disable submit button until terms are checked
+    document.getElementById('termsCheck').addEventListener('change', function () {
+        document.getElementById('termsSubmit').disabled = !this.checked;
+    });
+
+
+    $(document).ready(function() {
+        setTimeout(function(){
+            $('.alert').remove();
+        }, 8000)
+    });
+
+</script>

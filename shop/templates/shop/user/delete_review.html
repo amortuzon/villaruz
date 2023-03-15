@@ -1,0 +1,35 @@
+{% extends 'shop/index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+    <main><br><br>
+        <div class="container-fluid px-4">
+            <h1 class="text-center mt-4">Delete Review</h1>
+            <br>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card mb-4" style="background-color: #f7f7f7;">
+                        <div class="card-header" style="background-color: #e8eaed;">
+                            <i class="fas fa-trash me-1"></i>
+                            Delete Review
+                        </div>
+                        <div class="card-body">
+                            <h6 class="text-center mb-4">Are you sure you want to delete {{review.customer}}'s' review?</h6>
+                            <form action="{% url 'delete_review' review.id %}" method="POST">
+                                {% csrf_token %}
+                                <div class="text-center">
+                                    <input type="submit" value="Delete" class="btn btn-danger"/>
+                                    <a class="btn btn-warning" href="{% url 'starter' %}">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
+

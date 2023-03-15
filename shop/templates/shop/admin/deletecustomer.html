@@ -1,0 +1,46 @@
+{% extends 'shop/index.html' %}
+{% block content %}
+{% load static %}
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Delete Customer</h1>
+                <div>
+                    <a href="{% url 'dashboard' %}" class="my-button">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </a>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-add me-1"></i>
+                                Delete Customer
+                            </div>
+                            <div class="row">
+                                <div class="card-body">
+                                    <h5>Are you sure you want to delete the customer "{{user}}"?</h5>
+                                    <form action="{% url 'delete_customer' customer.id  %}" method="POST">
+                                        {% csrf_token %}
+                                        <br>
+                                        <input type="submit" name="Submit" class="btn btn-success">
+                                        <a class="btn btn-warning" href="{% url 'customer' %}">Cancel</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="card mb-4">
+                            <img src="{% static 'images/villaruz.jpg' %}" class="img-fluid" alt="Responsive image">
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </main>
+</div>
+
+{% endblock %}

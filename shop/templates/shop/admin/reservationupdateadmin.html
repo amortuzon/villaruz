@@ -1,0 +1,58 @@
+{% extends 'shop/index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="text-center mt-4">Update Reservation Status</h1>
+            <br>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-edit me-1"></i>
+                            Update Reservation Status
+                        </div>
+                        <div class="card-body" style="background-color: #f7f7f7;">
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                {{ formset|crispy }}
+
+                                <div class="form-group">
+                                    <label for="name">Name:</label>
+                                    <div class="form-control">{{ shop.customer }}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="service">Service:</label>
+                                    <div class="form-control">
+                                        {% for services in shop.service.all %}
+                                            {{services}},
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date">Date:</label>
+                                    <div class="form-control">{{ shop.date }}</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="time">Time:</label>
+                                    <div class="form-control">{{ shop.time }}</div>
+                                </div>
+
+                                <div class="text-center mt-4">
+                                    <input type="submit" value="Update" class="btn btn-primary"/>
+                                    <a class="btn btn-secondary" href="{% url 'dashboard' %}">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

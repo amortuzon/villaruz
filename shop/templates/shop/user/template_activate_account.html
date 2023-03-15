@@ -1,0 +1,8 @@
+{% autoescape off %}
+Hi! {{ user }}
+
+Welcome to Villaruz Auto Electrical Shop! We appreciate you dear customer in using our system. But before you can
+access our system, please click on the link below to confirm your registration. Thank you very much!
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}

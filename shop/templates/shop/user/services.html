@@ -1,0 +1,134 @@
+{% extends 'shop/index.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+  /* CSS styles for hover effects */
+  .card:hover img {
+    transform: scale(1.1); /* increase image size on hover */
+    transition: transform 0.5s ease; /* add transition effect */
+  }
+  .card:hover .card-title {
+    color: #007bff; /* change text color on hover */
+  }
+
+  .card:hover a {
+    text-decoration: none; /* remove underline on hover */
+  }
+  .card:hover .my-button {
+    background-color: #007bff; /* change background color on hover */
+    color: white; /* change text color on hover */
+  }
+  .card:hover .my-button i {
+    transform: translateX(-5px); /* move icon to the left on hover */
+    transition: transform 0.5s ease; /* add transition effect */
+  }
+</style>
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Services</h1>
+            <div>
+                <a href="{% url 'dashboard' %}" class="my-button">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+            </div><br>
+            <!-- Page Features -->
+    <div class="row text-center">
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <!-- <a href=""> -->
+            <img class="card-img-top" src="{% static 'images/starter.jpg' %}" alt="" width="200" height="200">
+          <!-- </a> -->
+          <div class="card-body">
+            <!-- <a href=""> -->
+              <h4 class="card-title">Starter</h4>
+            <!-- </a> -->
+            <p class="card-text">Check up only, Replace Carbon Brush, Replace Housing, Replace Bearings,
+              Replace Field Coil, Replace Bossing, Rewind Field Coil, Replace Brush Holder,
+              Need to Check Starter Supply, Need to Install Starter Relay, and Checkup starter fuse.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <!-- <a href=""> -->
+            <img class="card-img-top" src="{% static 'images/carwiring.jpg' %}" alt="" width="200" height="200">
+          <!-- </a> -->
+          <div class="card-body">
+              <h4 class="card-title">Car Wiring</h4>
+            <!-- </a> -->
+            <p class="card-text">Checkup Head lights, Checkup Break lights, Checkup Signal lights
+              Checkup Fuses, Checkup Fuse Box, Checkup Wiper, Checkup horn
+              Install Head Lights, Install Break Light Switch, Install,
+              Additional Lights, Install horn, Over All Wirings, and Reface Wirings.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <!-- <a href=""> -->
+            <img class="card-img-top" src="{% static 'images/alternator.jpg' %}" alt="" width="200" height="200">
+          <!-- </a> -->
+          <div class="card-body">
+            <!-- <a href=""> -->
+              <h4 class="card-title">Alternator</h4>
+            <!-- </a> -->
+            <p class="card-text">Check up only, Replace Carbon Brush, Replace Housing, Replace Bearings,
+              Replace Pulley, Repair Rotor, Rewind Stator, Replace Stator,
+              Need to Check Alternator supply, Repair Rectifier, Replace Rectifier,
+              Replace Brush Holder</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <!-- <a href=""> -->
+            <img class="card-img-top" src="{% static 'images/batterypost.jpg' %}" alt="" width="200" height="200">
+          <!-- </a> -->
+          <div class="card-body">
+            <!-- <a href=""> -->
+              <h4 class="card-title">Battery Post</h4>
+            <!-- </a> -->
+            <p class="card-text">Information not available at the moment.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <!-- <a href=""> -->
+            <img class="card-img-top" src="{% static 'images/batterycharging.jpg' %}" alt="" width="200" height="200">
+          <!-- </a> -->
+          <div class="card-body">
+            <!-- <a href=""> -->
+              <h4 class="card-title">Battery Charging</h4>
+            <!-- </a> -->
+            <p class="card-text">Information not available at the moment.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+{% endblock %}        

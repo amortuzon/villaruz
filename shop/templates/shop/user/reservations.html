@@ -1,0 +1,116 @@
+{% extends 'shop/index.html' %}
+{% block content %}
+{% load static %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Reservations</h1>
+
+            <div class="row">
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-danger text-white mb-4">
+                        <div class="card-body">New Reservation Request</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="small text-white stretched-link">{{new_reservation}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-warning text-white mb-4">
+                        <div class="card-body">Approved Reservation Request</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="small text-white stretched-link">{{approved_reservation}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-success text-white mb-4">
+                        <div class="card-body">Completed Service</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="small text-white stretched-link">{{completed}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card mb-4">
+                        <a href="{% url 'reservation' user.customer.id %}" button type="button"
+                            class="btn btn-primary btn-lg btn-block">
+                            <h5><i class="fa fa-add"></i> Make Reservation</h5>
+                        </a></button>
+                    </div>
+                </div>
+            </div>
+            {% include 'shop/alert.html' %}
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Reservations List
+                        </div>
+                        <div class="card-body">
+                            <table id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th>Service</th>
+                                        <th>Status</th>
+                                        <th>Date/Time Requested</th>
+                                        <th style="text-align:center" colspan="2"></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for reservation in reservations %}
+                                    <tr>
+                                        <td>
+                                        {% for services in reservation.service.all %}
+                                        {{services}},&nbsp;
+                                        {% endfor %}
+                                        </td>
+                                        <td>{{reservation.status}}</td>
+                                        <td>{{reservation.created}}</td>
+                                        <td><a href="{% url 'update_reservation' reservation.id %}" button
+                                            class="btn"><i class="fa fa-eye"></i> Edit</button></a></td>
+                                        <td><a href="{% url 'delete_reservation' reservation.id %}" button
+                                            class="btn"><i class="fa fa-trash"></i> Delete</button></a></td>
+                                    </tr>
+                                    {% empty %}
+                                    <h3>No Items in List</h3>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script>
+	setTimeout(function(){
+		if ($('#msg').length > 0) {
+			$('#msg').remove();
+		}
+	}, 2000)
+
+</script>
+
+{% endblock %}

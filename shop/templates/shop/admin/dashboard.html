@@ -1,0 +1,228 @@
+{% extends 'shop/index.html' %}
+{% block content %}
+{% load static %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid px-4">
+            {% include 'shop/alert.html' %}
+            <h1 class="mt-4">Home</h1>
+            <div class="row">
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-danger text-white mb-4">
+                        <div class="card-body">New Reservation Request</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="big text-white stretched-link">{{new_reservation}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-warning text-white mb-4">
+                        <div class="card-body">Approved Reservation Request</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="big text-white stretched-link">{{approved_reservation}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-success text-white mb-4">
+                        <div class="card-body">Completed Service</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <div class="big text-white stretched-link">{{completed}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar me-1"></i>
+                            Number of New, Approved, and Completed Reservations
+                        </div>
+                        <div class="card-body"><canvas id="BarChart" width="100%" height="40"></canvas></div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-area me-1"></i>
+                            Number of Reservations per Month
+                        </div>
+                        <div class="card-body"><canvas id="AreaChart" width="100%" height="40"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Reservations List
+                        </div>
+                        <div class="card-body">
+                            <table id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:center">Name</th>
+                                        <th style="text-align:center">Service</th>
+                                        <th style="text-align:center">Status</th>
+                                        <th style="text-align:center">Date/Time Requested</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for reservations in reservation %}
+                                    <tr>
+                                        <td>{{reservations.customer}}</td>
+                                        <td>
+                                          {% for services in reservations.service.all %}
+                                          {{services}},&nbsp;
+                                          {% endfor %}
+                                          </td>
+                                        <td>{{reservations.status}}</td>
+                                        <td>{{reservations.created}}</td>
+                                        <td><a href="{% url 'update_reservationadmin' reservations.id %}" button
+                                                class="btn"><i class="fa fa-eye"></i> View</button></a></td>
+                                        <td><a href="{% url 'delete_reservationadmin' reservations.id %}" button
+                                                class="btn"><i class="fa fa-eye"></i> Delete</button></a></td>
+                                    </tr>
+                                    {% empty %}
+                                    <h3>No Items in List</h3>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Villaruz Auto Electrical 2023</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script>
+
+Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#292b2c';
+
+// Bar Chart Example
+var ctx = document.getElementById("BarChart");
+var myLineChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ["New Reservation", "Approved Reservation", "Completed Service"],
+    datasets: [{
+      label: "Revenue",
+      backgroundColor: "rgba(2,117,216,1)",
+      borderColor: "rgba(2,117,216,1)",
+      data: ['{{new_reservation}}', '{{approved_reservation}}', '{{completed}}'],
+    }],
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'month'
+        },
+        gridLines: {
+          display: false
+        },
+        ticks: {
+          maxTicksLimit: 6
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: 100,
+          maxTicksLimit: 5
+        },
+        gridLines: {
+          display: true
+        }
+      }],
+    },
+    legend: {
+      display: false
+    }
+  }
+});
+
+// Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#292b2c';
+
+// Area Chart Example
+var ctx = document.getElementById("AreaChart");
+var myLineChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    datasets: [{
+      label: "Sessions",
+      lineTension: 0.3,
+      backgroundColor: "rgba(2,117,216,0.2)",
+      borderColor: "rgba(2,117,216,1)",
+      pointRadius: 5,
+      pointBackgroundColor: "rgba(2,117,216,1)",
+      pointBorderColor: "rgba(255,255,255,0.8)",
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: "rgba(2,117,216,1)",
+      pointHitRadius: 50,
+      pointBorderWidth: 2,
+      data: ['{{jan_res}}','{{feb_res}}','{{mar_res}}', '{{apr_res}}','{{may_res}}','{{jun_res}}',
+                '{{jul_res}}','{{aug_res}}','{{sep_res}}','{{oct_res}}', '{{nov_res}}', '{{dec_res}}'],
+    }],
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'date'
+        },
+        gridLines: {
+          display: false
+        },
+        ticks: {
+          maxTicksLimit: 7
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: 100,
+          maxTicksLimit: 5
+        },
+        gridLines: {
+          color: "rgba(0, 0, 0, .125)",
+        }
+      }],
+    },
+    legend: {
+      display: false
+    }
+  }
+});
+
+
+	setTimeout(function(){
+		if ($('#msg').length > 0) {
+			$('#msg').remove();
+		}
+	}, 2000)
+</script>
+{% endblock %}

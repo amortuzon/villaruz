@@ -1,0 +1,34 @@
+{% extends 'shop/index.html' %}
+{% block content %}
+{% load static %}
+
+  <div id="layoutSidenav_content">
+    <main><br><br>
+      <div class="container-fluid px-4">
+        <h1 class="text-center mt-4">Delete Message</h1><br>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card mb-4" style="background-color: #f7f7f7;">
+                <div class="card-header" style="background-color: #e8eaed;">
+                <i class="fas fa-trash me-1"></i>
+                Delete Message
+              </div>
+              <div class="card-body">
+                <h6 class="text-center mb-4">Are you sure you want to delete the message from {{comments}}?</h6>
+                <form action="{% url 'delete_messageadmin' comments.id  %}" method="POST">
+                  {% csrf_token %}
+                  <br>
+                  <div class="text-center">
+                    <input type="submit" name="Submit" class="btn btn-danger">
+                    <a class="btn btn-warning" href="{% url 'allmessage_page' %}">Cancel</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+{% endblock %}
